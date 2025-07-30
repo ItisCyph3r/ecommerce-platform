@@ -9,7 +9,7 @@ export default function AboutPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-6">About ShopHub</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Your trusted destination for quality products across all categories. 
-            We're committed to providing an exceptional shopping experience with 
+            We&apos;re committed to providing an exceptional shopping experience with 
             a carefully curated selection of products.
           </p>
         </div>
@@ -95,7 +95,7 @@ export default function AboutPage() {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Sustainability</h3>
               <p className="text-gray-600 mb-4">
-                We're committed to environmental responsibility and sustainable business practices 
+                We&apos;re committed to environmental responsibility and sustainable business practices 
                 to create a better future for all.
               </p>
             </div>

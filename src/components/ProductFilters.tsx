@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FilterOptions, Category } from '@/types';
 import { categoryLabels, categoryIcons } from '@/lib/sampleData';
@@ -45,14 +45,14 @@ export default function ProductFilters({
       params.delete('category');
     }
     
-    if (newFilters.minPrice) {
-      params.set('minPrice', newFilters.minPrice.toString());
+    if (newFilters.minPrice !== undefined) {
+      params.set('minPrice', String(newFilters.minPrice));
     } else {
       params.delete('minPrice');
     }
     
-    if (newFilters.maxPrice) {
-      params.set('maxPrice', newFilters.maxPrice.toString());
+    if (newFilters.maxPrice !== undefined) {
+      params.set('maxPrice', String(newFilters.maxPrice));
     } else {
       params.delete('maxPrice');
     }

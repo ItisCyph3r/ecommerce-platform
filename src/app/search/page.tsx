@@ -53,7 +53,7 @@ export default function SearchPage() {
           </h1>
           {query && (
             <p className="text-gray-600">
-              Showing results for "{query}" ({filteredProducts.length} products found)
+              Showing results for &quot;{query}&quot; ({filteredProducts.length} products found)
             </p>
           )}
         </div>
@@ -72,7 +72,7 @@ export default function SearchPage() {
             <div className="text-6xl mb-4">😕</div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">No products found</h2>
             <p className="text-gray-600 mb-6">
-              We couldn't find any products matching "{query}"
+              We couldn&apos;t find any products matching &quot;{query}&quot;
             </p>
             <div className="space-y-2">
               <p className="text-sm text-gray-500">Try:</p>

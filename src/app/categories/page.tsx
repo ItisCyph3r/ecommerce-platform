@@ -20,9 +20,9 @@ export default function CategoriesPage() {
         {/* Page Header */}
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Product Categories</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our wide range of products organized by category. Find exactly what you're looking for with our easy-to-navigate category system.
-          </p>
+                      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our wide range of products organized by category. Find exactly what you&apos;re looking for with our easy-to-navigate category system.
+            </p>
         </div>
 
         {/* Categories Grid */}
@@ -123,7 +123,7 @@ export default function CategoriesPage() {
         <div className="mt-16 text-center">
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Can't find what you're looking for?
+              Can&apos;t find what you&apos;re looking for?
             </h2>
             <p className="text-gray-600 mb-6">
               Use our search feature to find specific products or browse all products to discover new items.

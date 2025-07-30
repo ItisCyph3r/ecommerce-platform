@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Metadata } from 'next';
 import { Product, FilterOptions, Category } from '@/types';
 import { storage } from '@/lib/storage';
-import { sampleProducts, categoryLabels, categoryIcons } from '@/lib/sampleData';
+import { sampleProducts } from '@/lib/sampleData';
 import ProductCard from '@/components/ProductCard';
 import ProductFilters from '@/components/ProductFilters';
 
@@ -72,18 +71,24 @@ export default function ProductsPage() {
     // Sort
     if (sortBy) {
       filtered.sort((a, b) => {
-        let aValue: any = a[sortBy];
-        let bValue: any = b[sortBy];
+        const aValue = a[sortBy];
+        const bValue = b[sortBy];
 
         if (sortBy === 'price') {
-          aValue = parseFloat(aValue);
-          bValue = parseFloat(bValue);
+          const aPrice = parseFloat(aValue as string);
+          const bPrice = parseFloat(bValue as string);
+          
+          if (sortOrder === 'desc') {
+            return bPrice > aPrice ? 1 : -1;
+          } else {
+            return aPrice > bPrice ? 1 : -1;
+          }
         }
 
         if (sortOrder === 'desc') {
-          return bValue > aValue ? 1 : -1;
+          return String(bValue) > String(aValue) ? 1 : -1;
         } else {
-          return aValue > bValue ? 1 : -1;
+          return String(aValue) > String(bValue) ? 1 : -1;
         }
       });
     }
@@ -159,7 +164,7 @@ export default function ProductsPage() {
                       value={`${filters.sortBy || 'name'}-${filters.sortOrder || 'asc'}`}
                       onChange={(e) => {
                         const [sortBy, sortOrder] = e.target.value.split('-');
-                        const newFilters = { ...filters, sortBy: sortBy as any, sortOrder: sortOrder as any };
+                        const newFilters = { ...filters, sortBy: sortBy as FilterOptions['sortBy'], sortOrder: sortOrder as FilterOptions['sortOrder'] };
                         handleFilterChange(newFilters);
                       }}
                       className="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"

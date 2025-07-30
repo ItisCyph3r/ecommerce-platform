@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Metadata } from 'next';
 import { sampleProducts, categoryLabels, categoryIcons } from '@/lib/sampleData';
 import { Category } from '@/types';
@@ -110,7 +109,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose ShopHub?</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We're committed to providing the best shopping experience
+              We&apos;re committed to providing the best shopping experience
             </p>
           </div>
           

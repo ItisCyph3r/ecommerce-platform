@@ -8,7 +8,7 @@ import { storage } from '@/lib/storage';
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isUpdating, setIsUpdating] = useState<string | null>(null);
+
 
   useEffect(() => {
     const items = storage.getCart();
@@ -58,7 +58,7 @@ export default function CartPage() {
             <div className="text-6xl mb-4">🛒</div>
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
             <p className="text-gray-600 mb-8">
-              Looks like you haven't added any products to your cart yet.
+              Looks like you haven&apos;t added any products to your cart yet.
             </p>
             <Link href="/products" className="btn-primary text-lg px-8 py-3">
               Start Shopping

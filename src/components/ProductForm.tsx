@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Product, ProductFormData, Category } from '@/types';
 import { categoryLabels } from '@/lib/sampleData';
 
@@ -219,17 +220,18 @@ export default function ProductForm({ product, onSubmit, onCancel, isLoading = f
           {formData.image && (
             <div className="mt-3">
               <p className="text-sm text-gray-600 mb-2">Image Preview:</p>
-              <div className="relative w-32 h-32 bg-gray-100 rounded-lg overflow-hidden">
-                <img
-                  src={formData.image}
-                  alt="Preview"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
-              </div>
+                <div className="relative w-32 h-32 bg-gray-100 rounded-lg overflow-hidden">
+                 <Image
+                   src={formData.image}
+                   alt="Preview"
+                   fill
+                   className="object-cover"
+                   sizes="128px"
+                   onError={() => {
+                     // Handle error silently
+                   }}
+                 />
+               </div>
             </div>
           )}
         </div>
