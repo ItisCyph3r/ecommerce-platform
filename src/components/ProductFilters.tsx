@@ -20,9 +20,9 @@ export default function ProductFilters({
 }: ProductFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [priceRange, setPriceRange] = useState({
-    min: filters.minPrice || '',
-    max: filters.maxPrice || '',
+  const [priceRange, setPriceRange] = useState<{ min: string; max: string }>({
+    min: filters.minPrice?.toString() || '',
+    max: filters.maxPrice?.toString() || '',
   });
 
   const categories: Category[] = [
