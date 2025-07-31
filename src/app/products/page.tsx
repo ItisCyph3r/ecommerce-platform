@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Product, FilterOptions, Category } from '@/types';
 import { storage } from '@/lib/storage';
@@ -8,7 +8,7 @@ import { sampleProducts } from '@/lib/sampleData';
 import ProductCard from '@/components/ProductCard';
 import ProductFilters from '@/components/ProductFilters';
 
-export default function ProductsPage() {
+function ProductsPageContent() {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -61,10 +61,10 @@ export default function ProductsPage() {
     }
 
     // Price filter
-    if (minPrice !== null) {
+    if (minPrice) {
       filtered = filtered.filter(product => product.price >= parseFloat(minPrice));
     }
-    if (maxPrice !== null) {
+    if (maxPrice) {
       filtered = filtered.filter(product => product.price <= parseFloat(maxPrice));
     }
 
@@ -75,8 +75,8 @@ export default function ProductsPage() {
         const bValue = b[sortBy];
 
         if (sortBy === 'price') {
-          const aPrice = parseFloat(aValue as string);
-          const bPrice = parseFloat(bValue as string);
+          const aPrice = aValue as number;
+          const bPrice = bValue as number;
           
           if (sortOrder === 'desc') {
             return bPrice > aPrice ? 1 : -1;
@@ -191,5 +191,17 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-600"></div>
+      </div>
+    }>
+      <ProductsPageContent />
+    </Suspense>
   );
 } 

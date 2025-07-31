@@ -22,7 +22,7 @@ export default function ProductForm({ product, onSubmit, onCancel, isLoading = f
     stock: 0,
   });
 
-  const [errors, setErrors] = useState<Partial<ProductFormData>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof ProductFormData, string>>>({});
 
   useEffect(() => {
     if (product) {
@@ -38,7 +38,7 @@ export default function ProductForm({ product, onSubmit, onCancel, isLoading = f
   }, [product]);
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<ProductFormData> = {};
+    const newErrors: Partial<Record<keyof ProductFormData, string>> = {};
 
     if (!formData.name.trim()) {
       newErrors.name = 'Product name is required';
@@ -167,7 +167,7 @@ export default function ProductForm({ product, onSubmit, onCancel, isLoading = f
                 type="number"
                 id="price"
                 value={formData.price}
-                onChange={(e) => handleInputChange('price', parseFloat(e.target.value) || 0)}
+                onChange={(e) => handleInputChange('price', e.target.value === '' ? 0 : parseFloat(e.target.value) || 0)}
                 step="0.01"
                 min="0"
                 className={`input-field pl-8 ${errors.price ? 'border-red-500' : ''}`}
@@ -189,7 +189,7 @@ export default function ProductForm({ product, onSubmit, onCancel, isLoading = f
             type="number"
             id="stock"
             value={formData.stock}
-            onChange={(e) => handleInputChange('stock', parseInt(e.target.value) || 0)}
+            onChange={(e) => handleInputChange('stock', e.target.value === '' ? 0 : parseInt(e.target.value) || 0)}
             min="0"
             className={`input-field ${errors.stock ? 'border-red-500' : ''}`}
             placeholder="0"
